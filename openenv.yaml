@@ -1,0 +1,18 @@
+name: email_triage_env
+description: Classify emails into spam, work, or personal
+
+tasks:
+  - easy
+  - medium
+  - hard
+
+actions:
+  predicted_category:
+    type: string
+    enum: ["spam", "work", "personal"]
+
+observations:
+  email_text:
+    type: string
+
+reward_range: [0.0, 1.0]
