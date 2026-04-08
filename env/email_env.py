@@ -2,10 +2,11 @@ import random
 from env.models import Observation, Action, StepResult
 from env.tasks import TASKS
 
+
 class EmailEnv:
 
     def __init__(self, task_name="easy"):
-        self.task_name = task_name
+        self.task_name = random.choice(list(TASKS.keys()))
         self.emails = TASKS[task_name]
         self.index = 0
         self.total_steps = len(self.emails)
@@ -25,11 +26,11 @@ class EmailEnv:
 
         # reward shaping
         if action.predicted_category == true_label:
-            reward = 1.0
+            reward = 0.9
         elif action.predicted_category in ["spam", "work", "personal"]:
-            reward = 0.2  # partial correctness
+            reward = 0.5  # partial correctness
         else:
-            reward = -0.5  # invalid action
+            reward = 0.1  # invalid action
 
         self.index += 1
         done = self.index >= self.total_steps
