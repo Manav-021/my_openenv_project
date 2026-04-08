@@ -5,9 +5,13 @@ from env.tasks import TASKS
 
 class EmailEnv:
 
-    def __init__(self, task_name="easy"):
-        self.task_name = random.choice(list(TASKS.keys()))
-        self.emails = TASKS[task_name]
+    def __init__(self, task_name=None):
+        if task_name is None:
+            self.task_name = random.choice(list(TASKS.keys()))
+        else:
+            self.task_name = task_name
+
+        self.emails = TASKS[self.task_name]   
         self.index = 0
         self.total_steps = len(self.emails)
 
